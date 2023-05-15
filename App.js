@@ -60,11 +60,11 @@ function WeightScreen() {
 }
 
 function DietScreen() {
-  return <Text>Search</Text>;
+  return <Text>식단조절</Text>;
 }
 
 function ProfileScreen() {
-  return <Text>Notification</Text>;
+  return <Text>프로필</Text>;
 }
 
 
