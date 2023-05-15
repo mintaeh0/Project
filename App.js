@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -48,12 +48,13 @@ export default function BottomTabNavigationApp() {
 
 function WeightScreen() {
   return (
-    <View style={{padding: 10}}>
-      <View style={styles.defaultArea}>
-        
-      </View>
-      <View style={styles.defaultArea}>
-        
+    <View style={{padding: 10, flex: 1}}>
+      <Button
+        title = "체성분 등록"
+        onPress={() => Alert.alert("Button Pressed")}
+      />
+      <View style={[styles.defaultArea, {flex: 1}]}>
+        {/* 체성분 차트 */}
       </View>
     </View>
   )
