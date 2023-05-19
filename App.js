@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, Modal } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useState } from 'react';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,25 +48,67 @@ export default function BottomTabNavigationApp() {
 
 
 function WeightScreen() {
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   return (
-    <View style={{padding: 10, flex: 1}}>
+    <View style={styles.masterView}>
       <Button
         title = "체성분 등록"
-        onPress={() => Alert.alert("Button Pressed")}
+        onPress={() => setIsModalVisible(!isModalVisible)}
       />
       <View style={[styles.defaultArea, {flex: 1}]}>
-        {/* 체성분 차트 */}
+        <Text>체성분 차트</Text>
       </View>
+      <Modal visible={isModalVisible}
+        presentationStyle={"overFullScreen"}
+        animationType={"slide"}
+        transparent={true}
+        onRequestClose={() => {
+          setIsModalVisible(!isModalVisible)}}>
+
+        <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'flex-end'}}>
+            <View style={{
+              height: 500,
+              flex: 1,
+              backgroundColor: '#000'}}>
+
+              <Text>체성분 등록 Modal</Text>
+
+            </View>
+          </View>
+
+        </Modal>
     </View>
   )
 }
 
 function DietScreen() {
-  return <Text>식단조절</Text>;
+  return (
+    <View style={styles.masterView}>
+      <Button
+        title = "식단추가"
+        onPress={() => Alert.alert("식단추가 버튼")}
+      />
+      <View style={[styles.defaultArea, {flex: 1}]}>
+        <Text>칼로리 차트</Text>
+      </View>
+    </View>
+    
+  )
 }
 
 function ProfileScreen() {
-  return <Text>프로필</Text>;
+  return (
+    <View style={styles.masterView}>
+      <Text>프로필 확인 및 편집</Text>
+      <Text>환경설정</Text>
+    </View>
+  )
 }
 
 
@@ -79,6 +122,13 @@ const styles = StyleSheet.create({
     borderColor: '#BDBDBD',
     borderWidth: 2,
     borderStyle: 'solid',
-    marginBottom: 10,
+    marginTop: 10,
+  },
+  masterView: {
+    padding: 10,
+    flex: 1,
+  },
+  defaultModal: {
+    height: 300,
   },
 });
